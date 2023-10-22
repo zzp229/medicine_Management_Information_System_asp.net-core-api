@@ -5,6 +5,7 @@ const useStore = defineStore('main', {
         return {
             isCollapse: false,
             tags: [] as TagModel[],
+            token: ""
         }
     },
     // 状态管理 持久化
