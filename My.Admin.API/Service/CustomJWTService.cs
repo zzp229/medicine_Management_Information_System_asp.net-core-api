@@ -46,7 +46,7 @@ namespace Service
                  issuer: _JWTTokenOptions.Issuer,
                  audience: _JWTTokenOptions.Audience,
                  claims: claims,
-                 expires: DateTime.Now.AddMinutes(1),//10分钟有效期 
+                 expires: DateTime.Now.AddMinutes(10),//10分钟有效期 
                  notBefore: null,
                  signingCredentials: creds);
 

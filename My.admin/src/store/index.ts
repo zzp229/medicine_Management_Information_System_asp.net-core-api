@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia'
 import TagModel from '../class/TagModel';
+import TreeModel from '../class/TreeModel';
 const useStore = defineStore('main', {
     state: () => {
         return {
             isCollapse: false,
             tags: [] as TagModel[],
-            token: ""
+            token: "",
+            UserMenus: [] as TreeModel[]
         }
     },
     // 状态管理 持久化

@@ -40,7 +40,6 @@ import useStore from '../../store/index';
 import { handleSelect } from '../../tool/index'
 import router from '../../router';
 import IconCom from '../../components/IconCom.vue'
-console.log(`折叠菜单全局状态的值：${useStore().isCollapse}`)
 const list: Array<TreeModel> = [
     {
         "Name": "菜单管理",

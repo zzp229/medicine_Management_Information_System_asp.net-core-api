@@ -63,7 +63,7 @@ namespace Service
         {
             // 查询用户信息，判断是否是超级管理员
             var user = await _db.Queryable<Users>().FirstAsync(p => p.Id == userId);
-            if(user.UserType==0)
+            if (user.UserType == 0)
             {
                 var list = await _db.Queryable<Menu>()
                  .WhereIF(!string.IsNullOrEmpty(req.Name), m => m.Name.Contains(req.Name))
@@ -77,19 +77,20 @@ namespace Service
             else
             {
                 var list = await _db.Queryable<Menu>()
-                 .InnerJoin<MenuRoleRelation>((m, mrr) => m.Id == mrr.MenuId)
-                 .InnerJoin<Role>((m, mrr, r) => r.Id == mrr.RoleId)
-                 .InnerJoin<UserRoleRelation>((m, mrr, r, urr) => r.Id == urr.RoleId)
-                 .InnerJoin<Users>((m, mrr, r, urr, u) => u.Id == urr.UserId && u.Id == userId)
-                 .WhereIF(!string.IsNullOrEmpty(req.Name), m => m.Name.Contains(req.Name))
-                 .WhereIF(!string.IsNullOrEmpty(req.Index), m => m.Index.Contains(req.Index))
-                 .WhereIF(!string.IsNullOrEmpty(req.FilePath), m => m.Index.Contains(req.FilePath))
-                 .WhereIF(!string.IsNullOrEmpty(req.Description), m => m.Index.Contains(req.Description))
-                .Select(m => new MenuRes() { }, true)
-                .ToTreeAsync(it => it.Children, it => it.ParentId, "");
+    .InnerJoin<MenuRoleRelation>((m, mrr) => m.Id == mrr.MenuId)
+    .InnerJoin<Role>((m, mrr, r) => r.Id == mrr.RoleId)
+    .InnerJoin<UserRoleRelation>((m, mrr, r, urr) => r.Id == urr.RoleId)
+    .InnerJoin<Users>((m, mrr, r, urr, u) => u.Id == urr.UserId && u.Id == userId)
+    .WhereIF(!string.IsNullOrEmpty(req.Name), m => m.Name.Contains(req.Name))
+    .WhereIF(!string.IsNullOrEmpty(req.Index), m => m.Index.Contains(req.Index))
+    .WhereIF(!string.IsNullOrEmpty(req.FilePath), m => m.Index.Contains(req.FilePath))
+    .WhereIF(!string.IsNullOrEmpty(req.Description), m => m.Index.Contains(req.Description))
+    .OrderBy((m) => m.Order)
+    .Select(m => new MenuRes() { }, true)
+    .ToTreeAsync(it => it.Children, it => it.ParentId, "");
                 return list;
             }
-            
+
         }
         public async Task<bool> SettingMenu(string rid, string mids)
         {

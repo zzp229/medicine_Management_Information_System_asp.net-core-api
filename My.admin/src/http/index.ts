@@ -66,3 +66,4 @@ export const getToken = (obj: {}) => {
 export const getTreeMenu = (obj: {}) => {
     return instance.post(`/api/Menu/GetMenus`, obj)
 }
+

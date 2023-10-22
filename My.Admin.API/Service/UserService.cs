@@ -23,7 +23,7 @@ public class UserService : IUserService
     public async Task<UserRes> GetUser(LoginReq req)
     {
         return await _db.Queryable<Users>().Where(u => u.Name == req.UserName && u.Password == req.PassWord)
-                .Select(s => new UserRes() { },true).FirstAsync();
+                .Select(s => new UserRes() { }, true).FirstAsync();
     }
 
     public async Task<UserRes> Get(string id)
@@ -67,7 +67,10 @@ public class UserService : IUserService
         var list = await _db.Queryable<Users>()
             .LeftJoin<Users>((u1, u2) => u1.CreateUserId == u2.Id)
             .LeftJoin<Users>((u1, u2, u3) => u1.ModifyUserId == u3.Id)
-            .WhereIF(!string.IsNullOrEmpty(req.Name), u1 => u1.Name.Contains(req.Name))
+            .WhereIF(!string.IsNullOrEmpty(req.Name), u1 => u1.Name.Contains(req.Name)
+            || u1.NickName.Contains(req.Name)
+             || u1.Description.Contains(req.Name)
+            )
             .WhereIF(!string.IsNullOrEmpty(req.Description), u1 => u1.Description.Contains(req.Description))
             .OrderByDescending(u1 => u1.CreateDate)
             .Select((u1, u2, u3) => new UserRes()

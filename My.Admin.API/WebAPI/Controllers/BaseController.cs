@@ -9,5 +9,6 @@ namespace WebAPI.Controllers
     [Authorize]
     public class BaseController : ControllerBase
     {
+        public string userId { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace Service.FileStrategy
         public override async Task<string> Upload(List<IFormFile> files)
         {
             var result = Task.Run(() => {
-                Mac mac = new Mac("xxx", "xxx");
+                Mac mac = new Mac("TGdWJqsl1CrFrk2de8_8dwFs4iZ2kNkrZLs8uirn", "_kvRZICj812D3HzZ_aJAazQAkphEo2cjX9cnkPNU");
                 List<string> res = new List<string>();
                 foreach (var formFile in files)
                 {
