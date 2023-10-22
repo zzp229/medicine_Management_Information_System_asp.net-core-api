@@ -62,7 +62,7 @@ const form = reactive({
     passWord: ''
 })
 const rules = reactive<FormRules>({
-    userName: [{ required: true, message: '请输入用户名', trigger: 'blur' }],   //失去焦点就显示
+    userName: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
     passWord: [{ required: true, message: '请输入密码', trigger: 'blur', type: "number" }]
 })
 // 定义一个和表单同名的变量

@@ -1,5 +1,5 @@
 <template>
-    <!-- vue内置的图标 -->
+    <!-- <el-button :icon="icon" circle /> -->
     <component :is="icon" class="icon"></component>
 </template>
 <script setup lang="ts">

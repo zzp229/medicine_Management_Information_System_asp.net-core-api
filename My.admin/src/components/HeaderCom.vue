@@ -1,17 +1,14 @@
 <template>
     <el-row>
-        <el-col :span=1>
+        <el-col :span="1">
             <el-link :underline="false" @click="ChangeisCollapse">
                 <IconCom icon="expand"></IconCom>
             </el-link>
-        </el-col>
 
-        <!-- 左侧的首页按钮和已经打开的显示 -->
+        </el-col>
         <el-col :span="11">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item>
-                    <!-- 跳转回首页 -->
-                    <a href="/">
+                <el-breadcrumb-item><a href="/">
                         <el-icon class="middle">
                             <house />
                         </el-icon>
@@ -23,9 +20,6 @@
                 </el-breadcrumb-item>
             </el-breadcrumb>
         </el-col>
-
-
-        <!-- 右侧的头像和登录相关功能 -->
         <el-col :span="12">
             <div class="dropdown">
                 <el-avatar :size="30" :src="circleUrl" />
@@ -59,22 +53,20 @@
         </el-col>
     </el-row>
 </template>
-
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import IconCom from './IconCom.vue';
+import IconCom from '../components/IconCom.vue';
 import router from '../router';
-import store from '../store/index'
+import store from '../store/index';
 import { handleSelect, tagClick } from '../tool';
 const circleUrl = ref('/01.jpeg')
 const NickName = ref("Rise")
-// console.log(`折叠菜单全局状态局${useStore().isCollapse}`)
+// console.log(`折叠菜单全局状态的值：${store().isCollapse}`)
 const ChangeisCollapse = () => {
     store().$patch({
-        isCollapse: !store().isCollapse //这个是pinia的全局状态
+        isCollapse: !store().isCollapse
     })
 }
-
 // 页面加载完成后从路由匹配当前路径渲染到tags
 onMounted(() => {
     // 读取路由
@@ -90,17 +82,16 @@ onMounted(() => {
     }
 })
 
-// 从全局管理状态获取tags
+// 从全局状态中读取tags
 const tags = ref(store().tags)
 const handleClose = (index: string) => {
-    // 排除逻辑 点了菜单管理  => 角色管理和用户管理（保留没有点的）
+    // 排除逻辑 点了菜单管理  => 角色管理和用户管理
     tags.value = tags.value.filter(p => p.Index != index)
     store().$patch({
         tags: tags.value
     })
-}
+} 
 </script>
-
 <style lang="scss" scoped>
 .el-header {
     .el-col {

@@ -7,8 +7,7 @@ const useStore = defineStore('main', {
             tags: [] as TagModel[],
         }
     },
-    
-    // 状态管理
+    // 状态管理 持久化
     persist: {
         // 开启
         enabled: true,
