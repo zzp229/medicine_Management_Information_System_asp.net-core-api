@@ -1,0 +1,41 @@
+[
+    {
+        "Name": "菜单管理",
+        "Index": "/menu",
+        "FilePath": "",
+        "Children": [
+            {
+                "Name": "菜单列表",
+                "Index": "/menu",
+                "Children": [],
+                "FilePath": "menu.vue"
+            }
+        ]
+    },
+    {
+        "Name": "角色管理",
+        "Index": "/role",
+        "FilePath": "",
+        "Children": [
+            {
+                "Name": "角色列表",
+                "Index": "/role",
+                "Children": [],
+                "FilePath": "role.vue"
+            }
+        ]
+    },
+    {
+        "Name": "用户管理",
+        "Index": "/user",
+        "FilePath": "",
+        "Children": [
+            {
+                "Name": "用户列表",
+                "Index": "/user",
+                "Children": [],
+                "FilePath": "user.vue"
+            }
+        ]
+    }
+]
