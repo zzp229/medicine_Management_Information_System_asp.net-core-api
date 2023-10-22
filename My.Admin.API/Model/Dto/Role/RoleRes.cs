@@ -10,7 +10,7 @@ namespace Model.Dto.Role
 {
     public class RoleRes
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
         /// <summary>
         /// 名称
         /// </summary> 
@@ -46,7 +46,7 @@ namespace Model.Dto.Role
         /// <summary>
         /// 是否删除
         /// </summary> 
-        public int IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
 
 
     }

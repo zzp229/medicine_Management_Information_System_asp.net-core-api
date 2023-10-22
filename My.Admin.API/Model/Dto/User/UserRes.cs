@@ -55,7 +55,7 @@ namespace Model.Dto.User
         /// <summary>
         /// 是否删除
         /// </summary>
-        public int IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         /// <summary>
         /// 描述
         /// </summary>

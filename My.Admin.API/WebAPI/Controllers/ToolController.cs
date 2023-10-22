@@ -53,16 +53,16 @@ namespace WebAPI.Controllers
                 IsEnable = true,
                 Description = "数据库初始化时默认添加的炒鸡管理员",
                 CreateDate = DateTime.Now,
-                CreateUserId = 0,
+                CreateUserId = "",
             };
-            long userId = await _db.Insertable(user).ExecuteReturnBigIdentityAsync();
+            string userId = (await _db.Insertable(user).ExecuteReturnEntityAsync()).Id;
             var m1 = new Menu()
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = "菜单管理",
                 Index = "/menu",
                 FilePath = "menu.vue",
-                ParentId = 0,
+                ParentId = "",
                 Order = 1,
                 IsEnable = true,
                 Icon = "folder",
@@ -70,23 +70,22 @@ namespace WebAPI.Controllers
                 CreateDate = DateTime.Now,
                 CreateUserId = userId
             };
-            var bigid = await _db.Insertable(m1).ExecuteReturnBigIdentityAsync();
+            string mid1 = (await _db.Insertable(m1).ExecuteReturnEntityAsync()).Id;
             var m2 = new Menu()
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = "菜单列表",
                 Index = "/menu",
                 FilePath = "menu.vue",
-                ParentId = bigid,
+                ParentId = mid1,
                 Order = 1,
                 IsEnable = true,
                 Icon = "notebook",
                 Description = "数据库初始化时默认添加的默认菜单",
                 CreateDate = DateTime.Now,
                 CreateUserId = userId
-            };
-            long id = await _db.Insertable(m2).ExecuteCommandAsync();
-            return id > 0;
+            }; 
+            return await _db.Insertable(m2).ExecuteCommandIdentityIntoEntityAsync();
         }
     }
 }

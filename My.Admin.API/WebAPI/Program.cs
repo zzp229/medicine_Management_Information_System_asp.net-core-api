@@ -9,6 +9,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
     // 设置标题和版本
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "My.Admin.API", Version = "v1" });
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Zhaoxi.Admin.API", Version = "v1" });
     // 设置参数默认值
     options.ParameterFilter<DefaultValueParameterFilter>();
     // 设置对象类型参数默认值
@@ -133,6 +134,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// 开启文件服务
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(AppContext.BaseDirectory, "wwwroot")),
+    RequestPath = "/static"
+});
+
+
+
 
 app.UseAuthentication();
 app.UseAuthorization();

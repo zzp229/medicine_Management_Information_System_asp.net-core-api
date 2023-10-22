@@ -10,11 +10,11 @@ namespace Model.Dto.Menu
     public class MenuRes
     {
         [SugarColumn(IsTreeKey = true)]
-        public long Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Index { get; set; }
         public string FilePath { get; set; }
-        public long ParentId { get; set; }
+        public string ParentId { get; set; }
         public string ParentName { get; set; }
         public int Order { get; set; }
         public bool IsEnable { get; set; }

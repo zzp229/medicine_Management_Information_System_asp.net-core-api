@@ -32,7 +32,6 @@ namespace WebAPI.Controllers
                     return ResultHelper.Error("账号不存在，用户名或密码错误！");
                 }
                 _logger.LogInformation("登录");
-                //返回token
                 return ResultHelper.Success(await _jwtService.GetToken(user));
             }
             else

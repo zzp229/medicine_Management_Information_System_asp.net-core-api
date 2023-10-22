@@ -94,6 +94,12 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Http.Features/6.0.0-preview.4.21253.5": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "7.0.0",
+          "System.IO.Pipelines": "6.0.0-preview.4.21253.7"
+        }
+      },
       "Microsoft.AspNetCore.JsonPatch/7.0.12": {
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
@@ -365,6 +371,17 @@
           "lib/netstandard2.1/Oracle.ManagedDataAccess.dll": {
             "assemblyVersion": "3.1.21.1",
             "fileVersion": "3.1.21.1"
+          }
+        }
+      },
+      "Qiniu/8.4.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Qiniu.dll": {
+            "assemblyVersion": "8.4.0.0",
+            "fileVersion": "8.4.0.0"
           }
         }
       },
@@ -750,6 +767,7 @@
           "System.Threading.Tasks": "4.3.0"
         }
       },
+      "System.IO.Pipelines/6.0.0-preview.4.21253.7": {},
       "System.Memory/4.5.3": {},
       "System.Reflection/4.3.0": {
         "dependencies": {
@@ -911,6 +929,7 @@
       },
       "Interface/1.0.0": {
         "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "6.0.0-preview.4.21253.5",
           "Model": "1.0.0"
         },
         "runtime": {
@@ -927,10 +946,13 @@
       },
       "Service/1.0.0": {
         "dependencies": {
+          "AutoMapper": "12.0.1",
           "Interface": "1.0.0",
           "JWT": "10.1.1",
+          "Microsoft.AspNetCore.Http.Features": "6.0.0-preview.4.21253.5",
           "Microsoft.Extensions.Options": "7.0.1",
-          "Model": "1.0.0"
+          "Model": "1.0.0",
+          "Qiniu": "8.4.0"
         },
         "runtime": {
           "Service.dll": {}
@@ -985,6 +1007,13 @@
       "sha512": "sha512-KlSupL6h5oUwjMAoNJO2vp0MrqGYeO6nfdGjAEriK8xUccQndmQW9zQwF7d1R80abrZD/T9b01hmhk3v3LX05g==",
       "path": "microsoft.aspnetcore.authentication.jwtbearer/7.0.12",
       "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.7.0.12.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Http.Features/6.0.0-preview.4.21253.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R3MUGcafdytxU9Bv5PWy46MPlHtPLgjCX9ay+Y7VPyvaxtpCijz6tMBUPletOUeAcmyYpwBgWU1FwdyuZn0n8w==",
+      "path": "microsoft.aspnetcore.http.features/6.0.0-preview.4.21253.5",
+      "hashPath": "microsoft.aspnetcore.http.features.6.0.0-preview.4.21253.5.nupkg.sha512"
     },
     "Microsoft.AspNetCore.JsonPatch/7.0.12": {
       "type": "package",
@@ -1182,6 +1211,13 @@
       "path": "oracle.manageddataaccess.core/3.21.100",
       "hashPath": "oracle.manageddataaccess.core.3.21.100.nupkg.sha512"
     },
+    "Qiniu/8.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4aCHaebM7mprJ6eOIgQblT+WuayEbi30xj0nJw433flMH+qhYyLtAFBY8MkK44jXBoyFz5r/Kw7PXfnmhDbUng==",
+      "path": "qiniu/8.4.0",
+      "hashPath": "qiniu.8.4.0.nupkg.sha512"
+    },
     "SQLitePCLRaw.bundle_e_sqlite3/2.1.4": {
       "type": "package",
       "serviceable": true,
@@ -1335,6 +1371,13 @@
       "sha512": "sha512-3qjaHvxQPDpSOYICjUoTsmoq5u6QJAFRUITgeT/4gqkF1bajbSmb1kwSxEA8AHlofqgcKJcM8udgieRNhaJ5Cg==",
       "path": "system.io/4.3.0",
       "hashPath": "system.io.4.3.0.nupkg.sha512"
+    },
+    "System.IO.Pipelines/6.0.0-preview.4.21253.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vFgm2rr53rp46mFmO+ihwVf9zOZu4sA11ULmCbmvrYEG3XR45ql1CYBSEEsntMQeZG0B/qiOOifnLTxB5G1C0A==",
+      "path": "system.io.pipelines/6.0.0-preview.4.21253.7",
+      "hashPath": "system.io.pipelines.6.0.0-preview.4.21253.7.nupkg.sha512"
     },
     "System.Memory/4.5.3": {
       "type": "package",

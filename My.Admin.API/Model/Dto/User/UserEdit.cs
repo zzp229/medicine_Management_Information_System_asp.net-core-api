@@ -8,7 +8,7 @@ namespace Model.Dto.User
 {
     public class UserEdit
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string NickName { get; set; }
         public string Password { get; set; }

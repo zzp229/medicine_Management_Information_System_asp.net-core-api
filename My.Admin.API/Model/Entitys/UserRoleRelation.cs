@@ -13,12 +13,12 @@ namespace Model.Entitys
         /// 用户主键
         /// </summary>
         [SugarColumn(IsNullable = false)]
-        public long UserId { get; set; }
+        public string UserId { get; set; }
         /// <summary>
         /// 角色主键
         /// </summary>
         [SugarColumn(IsNullable = false)]
-        public long RoleId { get; set; }
+        public string RoleId { get; set; }
     }
 }
 

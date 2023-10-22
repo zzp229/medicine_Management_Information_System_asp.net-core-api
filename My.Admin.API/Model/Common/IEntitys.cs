@@ -12,7 +12,7 @@ namespace Model.Common
         /// 创建人Id
         /// </summary>
         [SugarColumn(IsNullable = false)]
-        public long CreateUserId { get; set; }
+        public string CreateUserId { get; set; }
         /// <summary>
         /// 创建日期
         /// </summary>
@@ -22,7 +22,7 @@ namespace Model.Common
         /// 修改人Id
         /// </summary>
         [SugarColumn(IsNullable = true)]
-        public long ModifyUserId { get; set; }
+        public string ModifyUserId { get; set; }
         /// <summary>
         /// 修改日期
         /// </summary>

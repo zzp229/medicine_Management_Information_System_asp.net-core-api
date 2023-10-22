@@ -116,3 +116,4 @@ D:\desktop\tmpgit\medicine_Management_Information_System_asp.net-core-api\My.Adm
 D:\desktop\tmpgit\medicine_Management_Information_System_asp.net-core-api\My.Admin.API\WebAPI\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
 D:\desktop\tmpgit\medicine_Management_Information_System_asp.net-core-api\My.Admin.API\WebAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\desktop\tmpgit\medicine_Management_Information_System_asp.net-core-api\My.Admin.API\WebAPI\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+D:\desktop\tmpgit\medicine_Management_Information_System_asp.net-core-api\My.Admin.API\WebAPI\bin\Debug\net7.0\Qiniu.dll

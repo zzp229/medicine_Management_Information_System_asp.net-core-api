@@ -32,7 +32,7 @@ namespace Model.Entitys
         /// 父级
         /// </summary>
         [SugarColumn(IsNullable = false)]
-        public long ParentId { get; set; }
+        public string ParentId { get; set; }
         /// <summary>
         /// 排序
         /// </summary>
