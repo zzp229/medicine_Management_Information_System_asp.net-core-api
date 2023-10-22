@@ -54,6 +54,8 @@
 import { ref, reactive } from 'vue';
 import { ElMessage, FormInstance, FormRules } from 'element-plus'
 import { useRouter } from 'vue-router'
+import { getToken } from '../../http';
+import store from '../../store/index'
 const router = useRouter()
 const url = ref('/images/logo.0606fdd2.png')
 const boxbg = ref('/images/svgs/login-box-bg.svg')
@@ -72,10 +74,15 @@ const onSubmit = async (ruleFormRef: FormInstance | undefined) => {
     await ruleFormRef.validate(async (valid, fields) => {
         if (valid) {
 
-            
+            //请求登录接口
+            let token:string = await getToken(form) as any as string
+            // 更新全局状态中的token值（store那边报错，但是可用的）
+            store().$patch({
+                token: token
+            })
+            ElMessage.success("登录成功！")
 
-            ElMessage.success("验证通过！")
-            // 路由跳转
+            // 路由跳转，登录成功就回主页
             router.push({
                 path:"/"
             })
