@@ -33,7 +33,7 @@
                     <template #dropdown>
                         <el-dropdown-menu>
                             <el-dropdown-item>我的主页</el-dropdown-item>
-                            <el-dropdown-item>退出</el-dropdown-item>
+                            <el-dropdown-item @click="logOut">退出</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
                 </el-dropdown>
@@ -58,9 +58,9 @@ import { onMounted, ref } from 'vue';
 import IconCom from '../components/IconCom.vue';
 import router from '../router';
 import store from '../store/index';
-import { handleSelect, tagClick } from '../tool';
-const circleUrl = ref('/01.jpeg')
-const NickName = ref("Rise")
+import { FormatToken, handleSelect, tagClick } from '../tool';
+const circleUrl = ref(FormatToken(store().token)?.Image)
+const NickName = ref(FormatToken(store().token)?.NickName)
 // console.log(`折叠菜单全局状态的值：${store().isCollapse}`)
 const ChangeisCollapse = () => {
     store().$patch({
@@ -90,7 +90,12 @@ const handleClose = (index: string) => {
     store().$patch({
         tags: tags.value
     })
-} 
+}
+
+const logOut = () => {
+    store().reset()
+    router.push({ path: "/login" })
+}
 </script>
 <style lang="scss" scoped>
 .el-header {
@@ -115,7 +120,6 @@ const handleClose = (index: string) => {
 .dropdown {
     float: right;
     height: 50px;
-    line-height: 70px;
 }
 
 .el-dropdown {

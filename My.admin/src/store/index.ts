@@ -7,7 +7,18 @@ const useStore = defineStore('main', {
             isCollapse: false,
             tags: [] as TagModel[],
             token: "",
-            UserMenus: [] as TreeModel[]
+            UserMenus: [] as TreeModel[],
+            // Token的刷新次数
+            RefreshTokenNum:0
+        }
+    },
+    actions: {
+        reset() {
+            this.token = ""
+            this.isCollapse = false
+            this.tags = []
+            this.UserMenus = []
+            this.RefreshTokenNum = 0
         }
     },
     // 状态管理 持久化

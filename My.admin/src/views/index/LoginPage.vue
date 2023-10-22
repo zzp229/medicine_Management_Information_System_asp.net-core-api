@@ -73,18 +73,17 @@ const onSubmit = async (ruleFormRef: FormInstance | undefined) => {
     if (!ruleFormRef) return;
     await ruleFormRef.validate(async (valid, fields) => {
         if (valid) {
-
-            //请求登录接口
-            let token:string = await getToken(form) as any as string
-            // 更新全局状态中的token值（store那边报错，但是可用的）
+            // 请求登录接口
+            let token: string = await getToken(form) as any as string
+            // 更新全局状态中token的值
             store().$patch({
-                token: token
+                token: token,
+                RefreshTokenNum: 0
             })
             ElMessage.success("登录成功！")
-
-            // 路由跳转，登录成功就回主页
+            // 路由跳转
             router.push({
-                path:"/"
+                path: "/"
             })
         } else {
             ElMessage.error("验证失败！")

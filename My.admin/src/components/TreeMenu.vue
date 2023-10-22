@@ -1,27 +1,22 @@
-<template>
-    <el-menu-item :index="item.Index" v-if="item.Children.length == 0">
-        <el-icon>
-            <Notebook />
-        </el-icon>
-        <template #title><span>{{ item.Name }}</span></template>
-    </el-menu-item>
-    <el-sub-menu :index="item.Index" v-else>
-        <template #title>
-            <el-icon>
-                <Folder />
-            </el-icon>
-            <span>{{ item.Name }}</span>
-        </template>
-        <TreeMenu v-for="it in item.Children" :obj="it" :key="it.Index"></TreeMenu>
-    </el-sub-menu>
+<template >
+    <template v-for="item in list" :key="item.index">
+        <el-menu-item :index=item.Index v-if="!item.Children">
+            <IconCom icon="notebook"></IconCom>
+            <template #title><span>{{ item.Name }}</span></template>
+        </el-menu-item>
+        <el-sub-menu :index=item.Index v-else>
+            <template #title>
+                <IconCom icon="folder"></IconCom>
+                <span>{{ item.Name }}</span>
+            </template>
+            <TreeMenu :list="item.Children"></TreeMenu>
+        </el-sub-menu>
+    </template>
 </template>
 <script setup lang="ts">
-import { PropType } from 'vue';
+import IconCom from './IconCom.vue';
 import TreeModel from '../class/TreeModel';
 const props = defineProps({
-    obj: Object as PropType<TreeModel>
-})
-
-// 处理和修饰变量
-const item: TreeModel = props.obj as TreeModel
+    list: Array<TreeModel>
+}) 
 </script>

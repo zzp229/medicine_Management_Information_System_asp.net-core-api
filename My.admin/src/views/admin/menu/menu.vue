@@ -5,22 +5,30 @@
         <el-input v-model="searchVal" placeholder="Please input" @change="Search" />
       </el-col>
       <el-col :span="12">
-        <el-button type="primary" @click="Search">查询</el-button><el-button type="primary">新增</el-button>
+        <el-button type="primary" @click="Search">查询</el-button>
+        <el-button type="primary" @click="open">新增</el-button>
       </el-col>
     </el-row>
     <br>
     <el-row>
       <el-col>
-        <el-table :data="tableData" style="width: 100%;height: 65vh;" border row-key="id">
-          <el-table-column type="index" label="index" width="70" />
-          <el-table-column prop="date" label="Date" width="180" />
-          <el-table-column prop="name" label="Name" width="180" />
-          <el-table-column prop="icon" label="Icon" width="80">
+        <el-table :data="tableData" :tree-props="{ children: 'Children' }" style="width: 100%;height: 65vh;" border
+          row-key="Id">
+          <el-table-column prop="Order" label="排序" width="80" />
+          <el-table-column prop="Name" label="名称" width="180" />
+          <el-table-column prop="Index" label="路径" width="80" />
+          <el-table-column prop="Icon" label="图标" width="80">
             <template #default="scope">
-              <IconCom :icon="scope.row.icon"></IconCom>
+              <IconCom :icon="scope.row.Icon"></IconCom>
             </template>
           </el-table-column>
-          <el-table-column prop="address" label="Address" />
+          <el-table-column prop="FilePath" label="组件名" width="180" />
+          <el-table-column prop="IsEnable" label="是否启用" width="100">
+            <template #default="scope">
+              <el-switch v-model="scope.row.IsEnable" disabled />
+            </template>
+          </el-table-column>
+          <el-table-column prop="Description" label="描述" />
           <el-table-column label="Operations" align="center">
             <template #default="scope">
               <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
@@ -31,159 +39,62 @@
       </el-col>
     </el-row>
   </el-card>
+  <add :isShow="isShow" :info="info" @closeAdd="closeAdd" @success="success"></add>
 </template>
   
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
-const searchVal = ref("")
-const Search = () => {
-    if (searchVal.value != '') {
-        tableData.value = orilist.filter(p => p.name.indexOf(searchVal.value) > -1)
-    } else {
-        tableData.value = orilist
-    }
+import { ElMessage } from 'element-plus';
+import { onMounted, Ref, ref } from 'vue';
+import Menu from '../../../class/Menu';
+import IconCom from '../../../components/IconCom.vue';
+import { delMenu, getTreeMenu } from '../../../http';
+import { SettingUserRouter } from '../../../tool';
+import add from './add.vue';
+let parms = {
+  Name: "",
+  Index: "",
+  FilePath: "",
+  Description: ""
 }
-const orilist = [
-    {
-        id: "1",
-        date: '2016-05-03',
-        name: 'Tom1',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-        children: [
-            {
-                id: "4",
-                date: '2016-05-02',
-                name: 'Tom1-1',
-                icon: "edit",
-                address: 'No. 189, Grove St, Los Angeles',
-            },
-            {
-                id: "5",
-                date: '2016-05-04',
-                name: 'Tom1-2',
-                icon: "edit",
-                address: 'No. 189, Grove St, Los Angeles',
-            },
-        ]
-    },
-    {
-        id: "2",
-        date: '2016-05-02',
-        name: 'Tom2',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        id: "3",
-        date: '2016-05-04',
-        name: 'Tom3',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        id: "2",
-        date: '2016-05-02',
-        name: 'Tom2',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        id: "3",
-        date: '2016-05-04',
-        name: 'Tom3',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        id: "2",
-        date: '2016-05-02',
-        name: 'Tom2',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        id: "3",
-        date: '2016-05-04',
-        name: 'Tom3',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        id: "2",
-        date: '2016-05-02',
-        name: 'Tom2',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        id: "3",
-        date: '2016-05-04',
-        name: 'Tom3',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        id: "2",
-        date: '2016-05-02',
-        name: 'Tom2',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        id: "3",
-        date: '2016-05-04',
-        name: 'Tom3',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        id: "2",
-        date: '2016-05-02',
-        name: 'Tom2',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        id: "3",
-        date: '2016-05-04',
-        name: 'Tom3',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        id: "2",
-        date: '2016-05-02',
-        name: 'Tom2',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        id: "3",
-        date: '2016-05-04',
-        name: 'Tom3',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        id: "2",
-        date: '2016-05-02',
-        name: 'Tom2',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        id: "3",
-        date: '2016-05-04',
-        name: 'Tom3',
-        icon: "edit",
-        address: 'No. 189, Grove St, Los Angeles',
-    },
+const tableData: Ref<Array<Menu>> = ref<Array<Menu>>([])
+const load = async () => {
+  parms.Name = searchVal.value
+  tableData.value = await getTreeMenu(parms) as any as Array<Menu>
+}
+const searchVal = ref("")
+const Search = async () => {
+  await load()
+}
+onMounted(load)
 
-]
-const tableData = ref(orilist)
-const handleEdit = (index: number, row: {}) => { }
-const handleDelete = (index: number, row: {}) => { }
+
+// -------------------- 新增、修改、删除逻辑 Start --------------------
+const isShow = ref(false)
+const open = () => {
+  isShow.value = true
+}
+const closeAdd = () => {
+  isShow.value = false
+  info.value = new Menu()
+}
+const info: Ref<Menu> = ref<Menu>(new Menu());
+const handleEdit = (index: number, row: Menu) => {
+  info.value = row
+  isShow.value = true
+}
+const success = async (message: string) => {
+  isShow.value = false
+  info.value = new Menu()
+  ElMessage.success(message)
+  await load()
+  // 重载路由
+  await SettingUserRouter()
+}
+const handleDelete = async (index: number, row: Menu) => {
+  await delMenu(row.Id)
+  await load()
+}
+// -------------------- 新增、修改、删除逻辑 End ----------------------
 
 </script>
   

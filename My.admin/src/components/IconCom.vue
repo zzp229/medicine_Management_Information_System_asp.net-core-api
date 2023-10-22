@@ -1,6 +1,7 @@
 <template>
-    <!-- <el-button :icon="icon" circle /> -->
-    <component :is="icon" class="icon"></component>
+    <div>
+        <component :is="icon" class="icon"></component>
+    </div>
 </template>
 <script setup lang="ts">
 defineProps({
@@ -9,12 +10,12 @@ defineProps({
 </script>
 <style scoped>
 /* 参照Element Plus官方效果编写图标样式 */
-.icon{
+.icon {
     height: 1em;
     width: 1em;
     vertical-align: middle;
-    margin-right: 5px; 
+    margin-right: 5px;
     text-align: center;
     font-size: 18px;
-}   
+}
 </style>
